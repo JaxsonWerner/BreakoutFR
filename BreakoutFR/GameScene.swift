@@ -106,6 +106,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func didBegin(_ contact: SKPhysicsContact) {
+        if contact.bodyA.node == brick ||
+            contact.bodyB.node == brick {
+            print("You Win")
+            brick.removeFromParent()
+            ball.removeFromParent()
+        }
+        
+        if contact.bodyA.node?.name == "loseZone" || contact.bodyB.node?.name == "loseZone" {
+            print("You Lose")
+            ball.removeFromParent()
+        }
+    }
+
+    
     func createBackground() {
         let stars = SKTexture(imageNamed: "Stars")
         for i in 0...1 {
